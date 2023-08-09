@@ -1,0 +1,19 @@
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    width: 100%;
+    max-width: 1600px;
+    margin: auto auto;
+}
+
+.card{
+    border: 1px solid #000;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+.card:hover{
+    transform: scale(1.1);
+}
