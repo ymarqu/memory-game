@@ -8,7 +8,7 @@ class CardContainer extends Component{
         let { cards, handleClick } = this.props;
 
         let cardComps = cards.map((card,index) => {
-            return <Card handleClick={handleClick} key={index} url={card.images.original.url} />
+            return <Card handleClick={handleClick} key={index} url={card.url} clicked={card.clicked} index={index} />
         })
 
         return(

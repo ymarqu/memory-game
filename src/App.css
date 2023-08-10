@@ -1,3 +1,24 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: black;
+  color: #fff;
+  height: 100vh;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.score{
+  font-size: 2rem;
+  width: 40%;
+}
+.score > p{
+  display: inline-block;
+  margin-left: 30px;
+}
+.score-board{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
