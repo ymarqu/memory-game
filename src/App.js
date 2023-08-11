@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardContainer from './components/CardContainer';
 import ScoreBoard from './components/ScoreBoard'
+import Modal from './components/Modal';
 import './App.css';
 
 
@@ -15,7 +16,8 @@ class App extends Component{
       initialOrder: [],
       cardImages: [],
       score: 0,
-      highScore: 0
+      highScore: 0,
+      startGame: false
     }
   }
 
@@ -41,8 +43,20 @@ _shuffleArray = (copy) => {
     copy[i] = temp;
   }
   this.setState({cardImages: copy});
-  this.setState({score: this.state.score + 1});
+
 }
+_gameOver = () => {
+
+  this.setState({startGame: false})
+
+}
+
+handleStartGame = () => {
+  console.log("click")
+  this.setState({startGame: true})
+}
+
+
 
 handleClick = (e) => {
   let { clicked, index } = e.target.dataset;
@@ -55,8 +69,12 @@ handleClick = (e) => {
     updateClick,
     ...copy.slice(index + 1)
   ];
+  this.setState({score: this.state.score + 1});
+  if(this.state.score === 12){
+   this._gameOver();
+  }else{
   this._shuffleArray(copy);
-
+  }
 }else{
   this._endGame();
 }
@@ -86,18 +104,32 @@ componentDidMount(){
 render(){
   let { cardImages } = this.state;
 
-  return (!cardImages.length) ?
-    (
-      <div className="App">
-      <img src='https://media.tenor.com/jfmI0j5FcpAAAAAd/loading-wtf.gif' alt="load"/>
+
+  if(!this.state.startGame){
+    return(
+      <div className='App'>
+        <ScoreBoard score={this.state.score} highScore={this.state.highScore}/>
+        <Modal handleClick={this.handleStartGame}/>
       </div>
-    ) :
-    (
-    <div className="App">
-      <ScoreBoard score={this.state.score} highScore={this.state.highScore}/>
+    )
+  }
+  else{
+    if(cardImages.length === 0){
+      return(
+        <div className='App'>
+          <img src='https://media.tenor.com/jfmI0j5FcpAAAAAd/loading-wtf.gif' alt="load"/>
+        </div>
+          )
+     }else{
+      return(
+    <div className='App'>
+      <ScoreBoard score={this.state.score} highScore={this.state.highScore} />
       <CardContainer handleClick={this.handleClick} cards={cardImages}/>
     </div>
-    );
+      )
+    }
+    }
   }
+
 }
 export default App;
