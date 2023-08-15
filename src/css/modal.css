@@ -1,8 +1,38 @@
 .modal{
+    box-sizing: border-box;
     height: 50vh;
     width: 50vw;
     border-radius: 30px;
     z-index: 1;
     background-color: antiquewhite;
     color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    margin-top: 10vh;
+
+}
+.title{
+    font-family: 'Handjet', cursive;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.directions{
+    font-size: 1.2rem;
+}
+.btn{
+    padding: 10px 50px;
+    border-radius: 30px;
+    border: none;
+    background-color: tomato;
+    color: aliceblue;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem;
+    font-family: inherit;
+}
+.btn:hover{
+    transform: scale(1.2);
 }

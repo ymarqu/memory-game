@@ -17,18 +17,29 @@ class App extends Component{
       cardImages: [],
       score: 0,
       highScore: 0,
-      startGame: false
+      startGame: false,
+      title: "Welcome to MemeMinder: The LOL Memory Game",
+      directions: "Press button to start!",
     }
   }
 
 //Restarte game to original order and reset score to 0. Update highscore if needed.
 _endGame = () => {
+  this.setState({directions: "Click button to play again!"})
+  if(this.state.score === 12){
+    this.setState({title: "Congrats! You won!!"})
+  }
+  else{
+    this.setState({title: "Dang dude... you lost...."})
+  }
   let startCopy = this.state.initialOrder;
   this.setState({cardImages: startCopy});
   if(this.state.score > this.state.highScore){
     this.setState({highScore: this.state.score});
   }
   this.setState({score: 0})
+  this.setState({startGame: false})
+
 }
 
 // Shuffle order of array after check click if card had not already been selected
@@ -48,6 +59,8 @@ _shuffleArray = (copy) => {
 _gameOver = () => {
 
   this.setState({startGame: false})
+  this.setState({title: "Congrats! You won!!"})
+  this.setState({directions: "Click button to play again!"})
 
 }
 
@@ -69,12 +82,13 @@ handleClick = (e) => {
     updateClick,
     ...copy.slice(index + 1)
   ];
-  this.setState({score: this.state.score + 1});
+  this.setState({score: this.state.score + 1}, () => {
   if(this.state.score === 12){
-   this._gameOver();
+    this._endGame();
   }else{
   this._shuffleArray(copy);
   }
+  });
 }else{
   this._endGame();
 }
@@ -102,14 +116,14 @@ componentDidMount(){
 }
 
 render(){
-  let { cardImages } = this.state;
+  let { cardImages, highScore, title, directions, score } = this.state;
 
 
   if(!this.state.startGame){
     return(
       <div className='App'>
-        <ScoreBoard score={this.state.score} highScore={this.state.highScore}/>
-        <Modal handleClick={this.handleStartGame}/>
+        <ScoreBoard score={score} highScore={highScore}/>
+        <Modal handleClick={this.handleStartGame} title={title} directions={directions}/>
       </div>
     )
   }
@@ -123,7 +137,7 @@ render(){
      }else{
       return(
     <div className='App'>
-      <ScoreBoard score={this.state.score} highScore={this.state.highScore} />
+      <ScoreBoard score={score} highScore={highScore} />
       <CardContainer handleClick={this.handleClick} cards={cardImages}/>
     </div>
       )
