@@ -2,7 +2,6 @@
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background-color: black;
   color: #fff;
@@ -10,7 +9,7 @@
   font-family: 'Bricolage Grotesque', sans-serif;
 }
 .score{
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 40%;
 }
 .score > p{
@@ -21,4 +20,9 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+h1{
+  font-family: 'Handjet', cursive;
+  font-size: 3rem;
 }
