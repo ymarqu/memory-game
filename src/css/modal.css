@@ -1,7 +1,8 @@
 .modal{
     box-sizing: border-box;
     height: 50vh;
-    width: 50vw;
+    width: 90%;
+    max-width: 800px;
     border-radius: 30px;
     z-index: 1;
     background-color: antiquewhite;
@@ -10,9 +11,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 5%;
+    padding: 0 30px;
     margin-top: 10vh;
-
+    justify-self: center;
 }
 .title{
     font-family: 'Handjet', cursive;

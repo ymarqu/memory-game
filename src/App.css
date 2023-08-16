@@ -3,18 +3,24 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: black;
+  background-color:black;
+  background-image:
+  radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+  radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+  radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+  radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
   color: #fff;
-  height: 100vh;
   font-family: 'Bricolage Grotesque', sans-serif;
 }
 .score{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 40%;
 }
 .score > p{
   display: inline-block;
-  margin-left: 30px;
+  margin-left: 5%;
 }
 .score-board{
   width: 100%;
@@ -25,4 +31,19 @@
 h1{
   font-family: 'Handjet', cursive;
   font-size: 3rem;
+}
+
+@media screen and (max-width: 900px) {
+  h1{
+    font-size: 2rem;
+  }
+  .score > p{
+    margin: 0;
+    font-size: 1rem;
+  }
+  .score{
+    display: flex;
+    flex-direction: column;
+  }
+
 }
